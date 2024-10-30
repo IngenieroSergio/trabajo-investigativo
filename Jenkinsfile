@@ -1,12 +1,13 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:20.10.0' // Imagen específica para Node.js 20.10.0
-            args '-u root'
-        }
-    }
+    agent any
 
     stages {
+        stage('Declarative: Checkout SCM') {
+            steps {
+                checkout scm
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
                 sh 'npm install'
@@ -18,14 +19,20 @@ pipeline {
                 sh 'npm test'
             }
         }
-    }
 
+        stage('Test Docker Access') {
+            steps {
+                sh 'docker --version'
+            }
+        }
+    }
+    
     post {
         always {
             echo 'Pipeline execution completed'
         }
         success {
-            echo 'All tests passed!'
+            echo 'All stages completed successfully'
         }
         failure {
             echo 'Some tests failed.'
