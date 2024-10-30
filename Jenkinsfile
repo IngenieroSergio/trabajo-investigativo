@@ -1,21 +1,23 @@
+// Jenkinsfile
 pipeline {
-    agent {
-        docker {
-            image 'node:20.10.0' // Imagen específica para Node.js 20.10.0
-            args '-u root'
-        }
-    }
+    agent any
 
     stages {
         stage('Install Dependencies') {
             steps {
-                sh 'npm install'
+                script {
+                    // Instala las dependencias del proyecto
+                    sh 'npm install'
+                }
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'npm test'
+                script {
+                    // Ejecuta las pruebas con Jest
+                    sh 'npm test'
+                }
             }
         }
     }
