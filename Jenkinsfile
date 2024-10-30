@@ -1,6 +1,10 @@
-// Jenkinsfile
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'node:20.10.0' // Usa la imagen específica de Node.js
+            args '-u root' // Corre como root para evitar problemas de permisos
+        }
+    }
 
     stages {
         stage('Install Dependencies') {
