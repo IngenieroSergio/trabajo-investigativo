@@ -1,0 +1,21 @@
+{
+  "name": "multiplication-ci-cd",
+  "version": "1.0.0",
+  "description": "A simple Node.js project with CI/CD in Jenkins",
+  "main": "src/math.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "devDependencies": {
+    "jest": "^27.0.0"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "dependencies": {
+    "fast-json-stable-stringify": "^2.1.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
