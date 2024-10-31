@@ -1,23 +1,24 @@
 pipeline {
-    agent {
-        docker {
-            image 'node:20.10.0' // Asegúrate de que la imagen sea correcta
-            args '-u root' // Usar root para evitar problemas de permisos
-        }
-    }
+    agent any
 
     stages {
+        stage('Check Versions') {
+            steps {
+                sh 'docker -v'  // Verificar la versión de Docker
+                sh 'node -v'    // Verificar la versión de Node.js
+                sh 'npm -v'     // Verificar la versión de npm
+            }
+        }
+
         stage('Install Dependencies') {
             steps {
-                // Instalar dependencias usando npm
-                sh 'npm install'
+                sh 'npm install' // Instalar dependencias
             }
         }
 
         stage('Run Tests') {
             steps {
-                // Ejecutar pruebas
-                sh 'npm test'
+                sh 'npm test' // Ejecutar pruebas
             }
         }
     }
