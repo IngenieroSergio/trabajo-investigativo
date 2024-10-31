@@ -4,21 +4,21 @@ pipeline {
     stages {
         stage('Check Versions') {
             steps {
-                sh 'docker -v'  // Verificar la versión de Docker
-                sh 'node -v'    // Verificar la versión de Node.js
-                sh 'npm -v'     // Verificar la versión de npm
+                sh 'docker -v'  
+                sh 'node -v'    
+                sh 'npm -v'     
             }
         }
 
         stage('Install Dependencies') {
             steps {
-                sh 'npm install' // Instalar dependencias
+                sh 'npm install' 
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh 'npm test' // Ejecutar pruebas
+                sh 'npm test' 
             }
         }
     }
