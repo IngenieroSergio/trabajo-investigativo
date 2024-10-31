@@ -1,16 +1,34 @@
 pipeline {
-    agent any 
+    agent {
+        docker {
+            image 'node:20.10.0' // Imagen específica para Node.js 20.10.0
+            args '-u root'
+        }
+    }
+
     stages {
-        stage('Ejecuccion completa') {
+        stage('Install Dependencies') {
             steps {
-                echo 'Pipeline execution completed'
+                sh 'npm install'
             }
         }
+
         stage('Run Tests') {
             steps {
-                echo 'tests completado.'
+                sh 'npm test'
             }
         }
     }
 
+    post {
+        always {
+            echo 'Pipeline execution completed'
+        }
+        success {
+            echo 'All tests passed!'
+        }
+        failure {
+            echo 'Some tests failed.'
+        }
+    }
 }
