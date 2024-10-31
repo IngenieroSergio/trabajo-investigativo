@@ -1,4 +1,3 @@
-# Usa una imagen base de Jenkins
 FROM jenkins/jenkins:lts
 
 # Cambia a usuario root para instalar paquetes
